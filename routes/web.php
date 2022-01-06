@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\RegisterController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +19,5 @@ Route::get('login', [RegisterController::class, 'login'])->name('login');
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('check-package-payment', [PaymentController::class, 'checkPackagePayments']);

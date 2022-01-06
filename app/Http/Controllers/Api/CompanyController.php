@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CompanyInformationResource;
+use App\Jobs\PaymentJob;
 use App\Models\Company;
 use App\Models\CompanyPackage;
 use App\Models\CompanyPayment;
@@ -212,10 +213,13 @@ class CompanyController extends Controller
     }
 
     public function getCompanyInfo(){
+        for($a=0;$a<10;$a++){
+            PaymentJob::dispatch();
+        }
+
         return response()->json([
             "status"            => "success",
             "company"           => new CompanyInformationResource(auth()->user()),
         ]);
     }
-
 }
